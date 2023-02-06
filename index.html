@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Word file Preview</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  </head>
+  <body>
+       <input id="files" type="file" accept=".docx" />
+    
+   
+	
+	
+	
+	
+	<!-- Modal -->
+<div class="modal fade" id="word-container-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Preview Word File</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="word-container" class=""></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+	
+	
+	
+	
+	
+	
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+ <script type="text/javascript" src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
+     <script src="Scripts/docx-preview.js"></script>
+
+
+<script type="text/javascript">
+  const selectedFile = document.getElementById('files');
+  selectedFile.addEventListener('change', (event) => {
+          var doc = document.getElementById("files").files[0];
+   const myModal = new bootstrap.Modal(document.getElementById('word-container-modal')); // creating modal object
+  console.log('doc::::::::',doc)
+          //If Document not NULL, render it.
+          if (doc != null) {
+              //Set the Document options.
+              var docxOptions = Object.assign(docx.defaultOptions, {
+                  useMathMLPolyfill: true
+              });
+              //Reference the Container DIV.
+              var container = document.querySelector("#word-container");
+              myModal.show(); // show modal
+              //Render the Word Document.
+              docx.renderAsync(doc, container, null, docxOptions);
+          }
+  });
+  </script>
+ </body>
+</html>
+
+
+
+
+
